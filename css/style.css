@@ -1,0 +1,14 @@
+#root{
+    display: flex;
+
+}
+
+.firstDiv{
+    background-color: aqua;
+width: 40%;
+}
+
+.lastDiv{
+    width: 60%;
+background-color: blueviolet;
+}
