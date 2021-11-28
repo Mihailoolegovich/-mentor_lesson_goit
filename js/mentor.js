@@ -29,8 +29,8 @@ function renderList() {
 
   const bookLisMarcap = books
     .map(({ title }) => {
-      return `<li>
-    <p class="title"> ${title}</p>
+      return `<li class="about__book">
+    <p class="title">${title}</p>
     <button id="delete">delete</button>
     <button id="edit">edit</button>
     </li>
@@ -41,6 +41,7 @@ function renderList() {
   rootUl.insertAdjacentHTML("afterbegin", bookLisMarcap);
 
   const rootP = document.querySelectorAll(".title");
+
   rootP.forEach((item) => item.addEventListener("click", renderPreview));
 
   const rootBtnDel = document.querySelector("#delete");
@@ -50,8 +51,13 @@ function renderList() {
   rootBtnEd.addEventListener("click", editDelete);
 }
 
-function renderPreview() {
-  console.log(1);
+function renderPreview(evt) {
+  const books = JSON.parse(localStorage.getItem("books"));
+
+  const book = books.find(({ title }) => {
+    return title === evt.currentTarget.textContent;
+  });
+  console.log("book", book);
 }
 
 function bookDelete() {
