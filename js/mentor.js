@@ -57,8 +57,8 @@ function renderList() {
   const rootBtnDel = document.querySelectorAll("#delete");
   rootBtnDel.forEach((item) => item.addEventListener("click", bookDelete));
 
-  const rootBtnEd = document.querySelector("#edit");
-  rootBtnEd.addEventListener("click", editDelete);
+  const rootBtnEd = document.querySelectorAll("#edit");
+  rootBtnEd.forEach((item) => item.addEventListener("click", editAddForm));
 }
 //
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -77,6 +77,7 @@ function renderPreview(evt) {
   <p>${book.plot}</p>`;
 
   refs.rootEndDiv.innerHTML = iformList;
+  refs.rootEndDiv.style.flexDirection = "column";
 }
 //
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -105,4 +106,63 @@ function bookDelete(evt) {
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //
 
-function editDelete() {}
+function editAddForm() {
+  refs.rootEndDiv.removeAttribute("style");
+
+  const addEditForm = `<form class="edit__form">
+  <label>Title
+  <input type="text" name="title" id="form-title" />
+  </label>
+  <label>Author
+  <input type="text" name="author" id="form-author" />
+  </label>
+  <label>Imag
+  <input type="text" name="imag" id="form-imag" />
+  </label>
+  <label>About
+  <input type="text" name="about" id="form-about" />
+  </label>
+  <button id="save-btn">Save</button>
+</form>`;
+
+  refs.rootEndDiv.innerHTML = addEditForm;
+
+  const formSaveBtn = document.querySelector("#save-btn");
+  formSaveBtn.addEventListener("click", editNewSave);
+}
+
+function editNewSave(evt) {
+  evt.preventDefault();
+  const refsForm = {
+    formTitle: document.querySelector("#form-title"),
+    formAuthor: document.querySelector("#form-author"),
+    formImag: document.querySelector("#form-imag"),
+    formAbout: document.querySelector("#form-about"),
+    // formSaveBtn: document.querySelector("#save-btn"),
+  };
+
+  const valueFormTitle = refsForm.formTitle.addEventListener("inpute", (evt) =>{
+    evt.currentTarget;}
+  );
+  console.log('valueFormTitle', valueFormTitle);
+  refsForm.formAuthor.addEventListener("input", getValueInput);
+  
+  refsForm.formImag.addEventListener("input", getValueInput);
+  refsForm.formAbout.addEventListener("input", getValueInput);
+  // refsForm.formSaveBtn.addEventListener("click", (evt) => {evt.preventDefault(); return evt. console.log(evt);});
+  const newElForm = `
+  <li class="about__book">
+  <p class="title">${valueFormTitle}</p>
+    <button id="delete">delete</button>
+    <button id="edit">edit</button>
+    </li>
+    `;
+    rootUl.insertAdjacentHTML("afterbegin", newElForm);
+  // refs.rootEndDiv.innerHTML += newElForm ;
+  ;
+  function getValueInput(evt) {
+    evt.currentTarget.value;
+   console.log(evt.currentTarget);
+  }
+  // return valueFormTitle;
+}

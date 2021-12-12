@@ -1,6 +1,6 @@
 #root{
     display: flex;
-
+    align-items: flex-start;
 }
 
 .firstDiv{
@@ -9,10 +9,18 @@ width: 40%;
 }
 
 .lastDiv{
+    display: flex;
+  
+  align-items: center;
     width: 60%;
 background-color: blueviolet;
 }
 
 .about__book{
     display: flex;
+}
+
+.edit__form {
+    display: flex;
+    flex-direction: column;
 }
